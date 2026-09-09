@@ -1,0 +1,82 @@
+{
+  "api": {
+    "titles": [
+      "Beautiful & luxurious studio at great location",
+      "Canal View Prinsengracht",
+      "Loft Studio in the Central Area",
+      "Wood and stone place",
+      "Penthouse, 4-5 rooms + 5th roof",
+      "Tile House",
+      "House in countryside",
+      "Amazing & Ancient Apartment",
+      "White castle",
+      "Perfectly located apartment near the Eiffel Tower"
+    ],
+    "descriptions": [
+      "A quiet cozy and picturesque that hides behind a river, unique wooden decked lodge surrounded by a large garden and many places for taking photos.",
+      "An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of city life comes to rest in this unusually flowy and soundproofed design home.",
+      "A comfortable and spacious apartment with a stunning view of the historic city center. Ideal for couples and small families.",
+      "Modern studio with all amenities, located in the heart of the city within walking distance to the main attractions and public transport.",
+      "Stylish penthouse on the top floor offering panoramic views of the rooftops. Bright interiors, designer furniture and a private terrace.",
+      "A traditional house with character, featuring wooden beams, a fireplace and a charming courtyard perfect for relaxing evenings.",
+      "Bright and airy family apartment close to parks and schools. Quiet neighbourhood with easy access to the city centre.",
+      "Unique loft space with high ceilings and large industrial windows. Perfect for those who appreciate creative and unconventional interiors."
+    ],
+    "previewImages": [
+      "preview-apartment-01.jpg",
+      "preview-house-01.jpg",
+      "preview-room-01.jpg",
+      "preview-hotel-01.jpg",
+      "preview-studio-01.jpg",
+      "preview-loft-01.jpg"
+    ],
+    "images": [
+      "photo-apartment-01.jpg",
+      "photo-apartment-02.jpg",
+      "photo-apartment-03.jpg",
+      "photo-house-01.jpg",
+      "photo-house-02.jpg",
+      "photo-room-01.jpg",
+      "photo-hotel-01.jpg",
+      "photo-studio-01.jpg",
+      "photo-loft-01.jpg",
+      "photo-loft-02.jpg"
+    ],
+    "users": [
+      "Max De Vries",
+      "Angelina Dubois",
+      "Oleg Sidorov",
+      "Emma van den Berg",
+      "Lucas Maes",
+      "Sophie Lambert",
+      "Johan Peeters",
+      "Laura Neumann",
+      "Mark Kowalski",
+      "Eva Lindberg"
+    ],
+    "emails": [
+      "max.devries@example.com",
+      "angelina.dubois@example.com",
+      "oleg.sidorov@example.com",
+      "emma.vandenberg@example.com",
+      "lucas.maes@example.com",
+      "sophie.lambert@example.com",
+      "johan.peeters@example.com",
+      "laura.neumann@example.com",
+      "mark.kowalski@example.com",
+      "eva.lindberg@example.com"
+    ],
+    "avatars": [
+      "avatar-max.jpg",
+      "avatar-angelina.jpg",
+      "avatar-oleg.jpg",
+      "avatar-emma.jpg",
+      "avatar-lucas.jpg",
+      "avatar-sophie.jpg",
+      "avatar-johan.jpg",
+      "avatar-laura.jpg",
+      "avatar-mark.jpg",
+      "avatar-eva.jpg"
+    ]
+  }
+}

@@ -66,6 +66,37 @@ npm start
 
 В процессе запуска проекта будет выполнен процесс «Сборки проекта» и запуска результирующего кода.
 
+#### Запустить JSON-server с мок-данными
+
+```bash
+npm run mock:server
+```
+
+Поднимает локальный REST API на `http://localhost:3123` на основе данных из `mocks/mock-server-data.json`. Служит источником тестовых заготовок для CLI-команды `--generate`.
+
+Полный набор данных доступен по адресу `http://localhost:3123/api`. Отдельные заготовки — как вложенные ресурсы, например `http://localhost:3123/api/titles`.
+
+Примеры использования CLI:
+
+```bash
+# Сгенерировать 100 предложений и сохранить их в файл offers.tsv
+npm run ts ./src/main.cli.ts -- --generate 100 ./mocks/offers.tsv http://localhost:3123/api
+
+# Импортировать данные из TSV-файла
+npm run ts ./src/main.cli.ts -- --import ./mocks/offers.tsv
+```
+
+**Обратите внимание**: адрес для `--generate` должен заканчиваться на `/api` — именно оттуда json-server отдаёт полный набор заготовок одним ответом.
+
+На Windows входной файл (`./src/main.cli.ts`) нужно указывать явно. На системах с поддержкой shebang файл можно запускать напрямую без `node`:
+```bash
+# вариант без npm-обёртки (POSIX/Linux/macOS)
+./src/main.cli.ts --generate 100 ./mocks/offers.tsv http://localhost:3123/api
+./src/main.cli.ts --import ./mocks/offers.tsv
+```
+
+**Обратите внимание**: сгенерированные TSV-файлы с тестовыми данными не нужно коммитить в систему контроля версий.
+
 ## Структура проекта
 
 ### Директория `src`

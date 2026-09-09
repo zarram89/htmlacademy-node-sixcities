@@ -1,0 +1,9 @@
+# Get all mock data from fake server (used by --generate)
+GET http://localhost:3123/api HTTP/1.1
+
+###
+
+# Get one resource
+GET http://localhost:3123/api/titles HTTP/1.1
+
+###
