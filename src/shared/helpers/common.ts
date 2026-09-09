@@ -11,3 +11,19 @@ export function getRandomItems<T>(items: T[]):T[] {
 export function getRandomItem<T>(items: T[]):T {
   return items[generateRandomValue(0, items.length - 1)];
 }
+
+export function getRandomBoolean(): boolean {
+  return Math.random() > 0.5;
+}
+
+export function getRandomDate(start: Date, end: Date): string {
+  const startTime = start.getTime();
+  const endTime = end.getTime();
+  const randomTime = generateRandomValue(startTime, endTime);
+
+  return new Date(randomTime).toISOString();
+}
+
+export function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : '';
+}

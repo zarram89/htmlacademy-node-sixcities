@@ -1,5 +1,8 @@
 export {
   generateRandomValue,
   getRandomItems,
-  getRandomItem
+  getRandomItem,
+  getRandomBoolean,
+  getRandomDate,
+  getErrorMessage
 } from './common.js';

@@ -1,4 +1,5 @@
-import { readFileSync } from 'node:fs';
+import EventEmitter from 'node:events';
+import { createReadStream } from 'node:fs';
 
 import { FileReader } from './file-reader.interface.js';
 
@@ -11,36 +12,51 @@ import {
   UserType
 } from '../../types/index.js';
 
-export class TSVFileReader implements FileReader {
-  private rawData = '';
+export class TSVFileReader extends EventEmitter implements FileReader {
+  private CHUNK_SIZE = 16384; // 16KB
 
   constructor(
     private readonly filename: string
-  ) {}
+  ) {
+    super();
+  }
 
-  public read(): void {
-    this.rawData = readFileSync(this.filename, {
-      encoding: 'utf-8'
+  public async read(): Promise<void> {
+    const readStream = createReadStream(this.filename, {
+      highWaterMark: this.CHUNK_SIZE,
+      encoding: 'utf-8',
     });
-  }
 
-  public toArray(): Offer[] {
-    this.validateRawData();
+    let remainingData = '';
+    let nextLinePosition = -1;
+    let importedRowCount = 0;
 
-    return this.parseRawDataToOffers();
-  }
+    for await (const chunk of readStream) {
+      remainingData += chunk.toString();
 
-  private validateRawData(): void {
-    if (!this.rawData) {
-      throw new Error('File was not read');
+      while ((nextLinePosition = remainingData.indexOf('\n')) >= 0) {
+        const completeRow = remainingData.slice(0, nextLinePosition + 1);
+        remainingData = remainingData.slice(++nextLinePosition);
+
+        const row = completeRow.trim();
+        if (row.length === 0) {
+          continue;
+        }
+
+        importedRowCount++;
+
+        const parsedOffer = this.parseLineToOffer(row);
+        this.emit('line', parsedOffer);
+      }
     }
-  }
 
-  private parseRawDataToOffers(): Offer[] {
-    return this.rawData
-      .split('\n')
-      .filter((row) => row.trim().length > 0)
-      .map((line) => this.parseLineToOffer(line));
+    const lastRow = remainingData.trim();
+    if (lastRow.length > 0) {
+      importedRowCount++;
+      this.emit('line', this.parseLineToOffer(lastRow));
+    }
+
+    this.emit('end', importedRowCount);
   }
 
   private parseLineToOffer(line: string): Offer {

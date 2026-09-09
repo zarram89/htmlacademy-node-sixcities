@@ -6,15 +6,21 @@ export class ImportCommand implements Command {
     return '--import';
   }
 
-  public execute(...parameters: string[]): void {
+  public async execute(...parameters: string[]): Promise<void> {
     const [filename] = parameters;
     const fileReader = new TSVFileReader(filename.trim());
 
-    try {
-      fileReader.read();
-      console.log(fileReader.toArray());
-    } catch (err) {
+    let importedRowCount = 0;
 
+    try {
+      fileReader.on('line', () => {
+        importedRowCount++;
+      });
+
+      await fileReader.read();
+
+      console.log(`Imported ${importedRowCount} rows from ${filename}.`);
+    } catch (err) {
       if (!(err instanceof Error)) {
         throw err;
       }
